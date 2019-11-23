@@ -1,0 +1,101 @@
+
+
+
+body {
+    padding-top: 100px;
+  }
+
+.colorful {
+  background:
+    -webkit-linear-gradient(16deg, hsla(66.83, 71.72%, 64.72%, 1) 0%, hsla(66.83, 71.72%, 64.72%, 0) 65%),
+    -webkit-linear-gradient(65deg, hsla(120, 100%, 63.22%, 1) 10%, hsla(120, 100%, 63.22%, 0) 80%),
+    -webkit-linear-gradient(135deg, hsla(60, 0%, 39.22%, 1) 15%, hsla(60, 0%, 39.22%, 0) 80%),
+    -webkit-linear-gradient(205deg, hsla(0, 96.85%, 64.72%, 1) 100%, hsla(0, 96.85%, 64.72%, 0) 70%);
+  background:
+    linear-gradient(74deg, hsla(66.83, 71.72%, 64.72%, 1) 0%, hsla(66.83, 71.72%, 64.72%, 0) 65%),
+    linear-gradient(25deg, hsla(120, 100%, 63.22%, 1) 10%, hsla(120, 100%, 63.22%, 0) 80%),
+    linear-gradient(315deg, hsla(60, 0%, 39.22%, 1) 15%, hsla(60, 0%, 39.22%, 0) 80%),
+    linear-gradient(245deg, hsla(0, 96.85%, 64.72%, 1) 100%, hsla(0, 96.85%, 64.72%, 0) 70%);
+}
+h1 {
+  font-family: 'Knewave', cursive;
+}
+h2, h3, h4 {
+  font-family: 'Jomolhari', serif;
+}
+p {
+  font-family: 'Montserrat', sans-serif;
+}
+
+p.clearback{
+  color: antiquewhite;
+}
+
+.textoutline-black{
+	text-shadow:
+		-1px -1px 0 #000,
+		1px -1px 0 #000,
+		-1px 1px 0 #000,
+		1px 1px 0 #000;
+}
+
+.bkimg{
+  background:url(../images/welcome/admission_1920.jpg) no-repeat center center;
+}
+.aboutimg{
+  background:url(../images/about/bayBridge.jpg) no-repeat center center;
+}
+.textoutline-white{
+	text-shadow:
+		-1px -1px 0 #ffffff,
+		1px -1px 0 #ffffff,
+		-1px 1px 0 #ffffff,
+		1px 1px 0 #ffffff
+}
+
+.textoutline-red{
+	text-shadow:
+		-1px -1px 0 #ff0000,
+		1px -1px 0 #ff0000,
+		-1px 1px 0 #ff0000,
+		1px 1px 0 #ff0000
+}
+
+.textoutline-green{
+	text-shadow:
+		-1px -1px 0 #025502,
+		1px -1px 0 #025502,
+		-1px 1px 0 #025502,
+		1px 1px 0 #025502
+}
+
+header.masthead {
+  position:relative;
+  background-color:#343a40;
+  background:url(../images/welcome/lake_merrit_colorized.jpg) no-repeat center center;
+  background-size:cover;
+  padding-top:8rem;
+  padding-bottom:8rem
+}
+header.masthead .overlay{
+  position:absolute;
+  background-color:#212529;
+  height:100%;
+  width:100%;
+  top:0;
+  left:0;
+  opacity:.3
+}
+header.masthead h1{
+  font-size:2rem
+}
+@media (min-width:768px){
+  header.masthead{
+    padding-top:12rem;
+    padding-bottom:12rem
+  }
+  header.masthead h1{
+    font-size:3rem
+  }
+}
+

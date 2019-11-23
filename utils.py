@@ -2,6 +2,9 @@ from datetime import datetime
 from jinja2 import Template
 import glob
 import os
+#Django import statements:
+from django.http import HttpResponse
+
 
 
 events = [
@@ -72,6 +75,20 @@ spaces = [
     "SPACE_PAGE_LINK" : "./SAE_Expression_College.html",
   }
 ]
+
+#there are 4 django view functions index,about,events, spaces
+def index(request):
+  content = open("./docs/index.html").read()
+  return HttpResponse(content)
+def about(request):
+  content = open("./docs/about.html").read()
+  return HttpResponse(content)
+def events(request):
+  content = open("./docs/events.html").read()
+  return HttpResponse(content)
+def spaces(request):
+  content = open("./docs/spaces.html").read()
+  return HttpResponse(content)
 
 # set template takes the file name of a template file, 
 # reads it and uses that to creates a object of Type Template

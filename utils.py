@@ -11,7 +11,7 @@ events = [
   {
     "content" : "events/afro_comic_con.html",
     "output" : "docs/afro_comic_con.html",
-    "EVENT_IMAGE" : "images/events/acc_logo.jpg",
+    "EVENT_IMAGE" : "/static/images/events/acc_logo.jpg",
     "EVENT_TITLE" : "Afro Comic Con",
     "EVENT_DATES" : "Nov 3-7 2019",
     "EVENT_SPACE_NAME" : "SAE Expression College",
@@ -24,7 +24,7 @@ events = [
   {
     "content" : "events/travel_more5.html",
     "output" : "docs/travel_more5.html",
-    "EVENT_IMAGE" : "images/events/trvl_black_flyer.png",
+    "EVENT_IMAGE" : "/static/images/events/trvl_black_flyer.png",
     "EVENT_TITLE" : "Travel More Spend Less #5",
     "EVENT_DATES" : "August 25, 2019",
     "EVENT_SPACE_NAME" : "Kingston 11 Cuisine",
@@ -37,7 +37,7 @@ events = [
   {
     "content" : "events/black_to_yoga.html",
     "output" : "docs/black_to_yoga.html",
-    "EVENT_IMAGE" : "images/events/black_to_yoga_flyer.jpg",
+    "EVENT_IMAGE" : "/static/images/events/black_to_yoga_flyer.jpg",
     "EVENT_TITLE" : "Yoga Informational Workshop and Practice for Men",
     "EVENT_DATES" : "November 10, 2019",
     "EVENT_SPACE_NAME" : "Queen Hippie Gypsie",
@@ -53,25 +53,25 @@ spaces = [
   {
     "content" : "spaces/kingston11.html",
     "output" : "docs/kingston11.html",
-    "SPACE_LOGO" : "./images/spaces/k11_logo2.png",
+    "SPACE_LOGO" : "/static/images/spaces/k11_logo2.png",
     "SPACE_NAME" : "Kingston 11 Cuisine",
-    "SPACE_IMAGE" : "./images/spaces/k11_event_space.jpg",
+    "SPACE_IMAGE" : "/static/images/spaces/k11_event_space.jpg",
     "SPACE_PAGE_LINK" : "./kingston11.html",
   },
   {
     "content" : "spaces/queen_hippie_gypsy.html",
     "output" : "docs/queen_hippie_gypsy.html",
-    "SPACE_LOGO" : "./images/spaces/qhg_storefront.jpg",
+    "SPACE_LOGO" : "/static/images/spaces/qhg_storefront.jpg",
     "SPACE_NAME" : "Queen Hippie Gypsy",
-    "SPACE_IMAGE" : "./images/spaces/qhg_kyrah_eventspace.jpg",
+    "SPACE_IMAGE" : "/static/images/spaces/qhg_kyrah_eventspace.jpg",
     "SPACE_PAGE_LINK" : "./queen_hippie_gypsy.html",
   },
   {
     "content" : "spaces/SAE_Expression_College.html",
     "output" : "docs/SAE_Expression_College.html",
-    "SPACE_LOGO" : "./images/spaces/sae_logo.jpg",
+    "SPACE_LOGO" : "/static/images/spaces/sae_logo.jpg",
     "SPACE_NAME" : "SAE Expression College",
-    "SPACE_IMAGE" : "./images/spaces/sae_outdoor.jpg",
+    "SPACE_IMAGE" : "/static/images/spaces/sae_outdoor.jpg",
     "SPACE_PAGE_LINK" : "./SAE_Expression_College.html",
   }
 ]

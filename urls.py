@@ -6,10 +6,10 @@ from django.urls import path
 import views
 
 urlpatterns = [
-  path("index.html", utils.serve_index),
-  path("about.html", utils.serve_about),
-  path("events.html", utils.serve_events),
-  path("dspaces.html", utils.serve_spaces),
+  path("index.html", views.serve_index),
+  path("about.html", views.serve_about),
+  path("events.html", views.serve_events),
+  path("dspaces.html", views.serve_spaces),
 ]
 
 # Boilerplate to include static files.

@@ -47,7 +47,7 @@ spaces = [
     "SPACE_LOGO" : "/static/images/spaces/k11_logo2.png",
     "SPACE_NAME" : "Kingston 11 Cuisine",
     "SPACE_IMAGE" : "/static/images/spaces/k11_event_space.jpg",
-    "SPACE_PAGE_LINK" : "./kingston11.html",
+    "SPACE_PAGE_LINK" : "/spaces/kingston11.html",
   },
   {
     "content" : "spaces/queen_hippie_gypsy.html",
@@ -55,7 +55,7 @@ spaces = [
     "SPACE_LOGO" : "/static/images/spaces/qhg_storefront.jpg",
     "SPACE_NAME" : "Queen Hippie Gypsy",
     "SPACE_IMAGE" : "/static/images/spaces/qhg_kyrah_eventspace.jpg",
-    "SPACE_PAGE_LINK" : "./queen_hippie_gypsy.html",
+    "SPACE_PAGE_LINK" : "/spaces/queen_hippie_gypsy.html",
   },
   {
     "content" : "spaces/SAE_Expression_College.html",
@@ -63,6 +63,6 @@ spaces = [
     "SPACE_LOGO" : "/static/images/spaces/sae_logo.jpg",
     "SPACE_NAME" : "SAE Expression College",
     "SPACE_IMAGE" : "/static/images/spaces/sae_outdoor.jpg",
-    "SPACE_PAGE_LINK" : "./SAE_Expression_College.html",
+    "SPACE_PAGE_LINK" : "/spaces/SAE_Expression_College.html",
   }
 ]

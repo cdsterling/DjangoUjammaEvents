@@ -24,7 +24,7 @@
 <!-- Jinja for loop to build the whole navbar -->
           {% for individual_page in pages %}
             
-            {% if individual_page.PAGE_TITLE != "spaces" %}
+            {% if individual_page.PAGE_TITLE != "spaces" or spaces_nav|length == 0  %}
               <li class="nav-item
               {% if individual_page.PAGE_TITLE == page.PAGE_TITLE %}
                 active
@@ -43,7 +43,7 @@
               <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                 <a class="dropdown-item" href="{{individual_page.page_link}}"> {{individual_page.PAGE_TITLE|title}}</a>
                 <div class="dropdown-divider"></div>
-                {% for my_space in spaces %}
+                {% for my_space in spaces_nav %}
                   <a class="dropdown-item" href="{{ my_space.SPACE_PAGE_LINK }}">{{my_space.SPACE_NAME|title}}</a>
                 {% endfor %}
               </div>
@@ -59,9 +59,9 @@
 
   <div class="container">
     {% if page.PAGE_TITLE == "events" %}
-      {% include "event_template.html" %}  
+      {% include "events.html" %}  
     {% elif page.PAGE_TITLE == "spaces" %}
-      {% include "space_template.html" %} 
+      {% include "spaces.html" %} 
     {% else %}
       {{PAGE_CONTENT|safe}}
 

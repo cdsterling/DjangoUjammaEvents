@@ -1,7 +1,7 @@
 # This file has the "routing" -- it associates "view functions" (found in
 # views.py) with different paths.
 
-from django.urls import path
+from django.urls import path, re_path
 
 import views
 
@@ -10,6 +10,7 @@ urlpatterns = [
   path("about.html", views.serve_about),
   path("events.html", views.serve_events),
   path("spaces.html", views.serve_spaces),
+  re_path(r'spaces/*', views.serve_generic_detailed_space),   #pretty sure there's a better way to do this, but i couldn't find anything to help me understand how to do the regular expressions for django
 ]
 
 # Boilerplate to include static files.

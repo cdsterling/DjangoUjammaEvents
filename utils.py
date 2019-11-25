@@ -5,9 +5,10 @@ import glob
 import os
 #Django import statements:
 from django.http import HttpResponse
-
-#get all the event and spaces details
 import db
+# from urls import urlpatterns
+
+
 
 def build_page_dictionary(page_name):
   single_file = find_specific_file("content", page_name)
@@ -50,10 +51,11 @@ def update_item_list(list_of_dicts):
     detailed_content =[]
     description_content_reader(item["content"], short_content, detailed_content)
     if len(short_content) >= 1:
-      event.update({"short_content": short_content[0]})
+      item.update({"short_content": short_content[0]})
     if len(detailed_content) >= 1:
-      event.update({"detailed_content":detailed_content[0]}
+      item.update({"detailed_content":detailed_content[0]}
     )
+  return list_of_dicts
     
 def build_navigation_dictionary_list():
   files = find_all_files("content")
@@ -63,9 +65,13 @@ def build_navigation_dictionary_list():
     file_name = os.path.basename(file_path)
     name_only, extension = os.path.splitext(file_name)
     page.update({"PAGE_TITLE": name_only})
-    page.update({"page_link" : file_name})
+    page.update({"page_link" : "/"+file_name})
     pages.append(page)
+ 
   return pages
+
+
+
 
 # description_content_reader - pulls both the long and short versions of the content out of the content file
 # stores the short content as the first list entry in short_descripton variable (this is available to the calling function)

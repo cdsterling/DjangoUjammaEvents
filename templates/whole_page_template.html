@@ -58,7 +58,14 @@
 
 
   <div class="container">
-    {{PAGE_CONTENT}}
+    {% if page.PAGE_TITLE == "events" %}
+      {% include "event_template.html" %}  
+    {% elif page.PAGE_TITLE == "spaces" %}
+      {% include "space_template.html" %} 
+    {% else %}
+      {{PAGE_CONTENT|safe}}
+
+    {% endif %}
 
   </div>
 

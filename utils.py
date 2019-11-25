@@ -1,82 +1,103 @@
 from datetime import datetime
-from jinja2 import Template
+from django.template import Template, Context
+from django.shortcuts import render
 import glob
 import os
 #Django import statements:
 from django.http import HttpResponse
 
+#get all the event and spaces details
+import db
 
-
-events = [
-  {
-    "content" : "events/afro_comic_con.html",
-    "output" : "docs/afro_comic_con.html",
-    "EVENT_IMAGE" : "/static/images/events/acc_logo.jpg",
-    "EVENT_TITLE" : "Afro Comic Con",
-    "EVENT_DATES" : "Nov 3-7 2019",
-    "EVENT_SPACE_NAME" : "SAE Expression College",
-    "EVENT_SPACE_ADDRESS" : "6601 Shellmound St, Emeryville, CA 94608",
-    "EVENT_ORGANIZER" : "The Afro Comic Con Planning Committe",
-    "EVENT_ORGANIZER_URL": "https://www.afrocomiccon.org/",
-    "EVENT_EMAIL" : "acc-planning@gmail.com",
-    "EVENT_MODAL_ID" :"afro_comic_con",
-  },
-  {
-    "content" : "events/travel_more5.html",
-    "output" : "docs/travel_more5.html",
-    "EVENT_IMAGE" : "/static/images/events/trvl_black_flyer.png",
-    "EVENT_TITLE" : "Travel More Spend Less #5",
-    "EVENT_DATES" : "August 25, 2019",
-    "EVENT_SPACE_NAME" : "Kingston 11 Cuisine",
-    "EVENT_SPACE_ADDRESS" : "2270 Telegraph Ave, Oakland, CA 94612",
-    "EVENT_ORGANIZER" : "Traveling Black",
-    "EVENT_ORGANIZER_URL": "https://traveling.black/",
-    "EVENT_EMAIL" : "travelingblack@gmail.com",
-    "EVENT_MODAL_ID" : "travel_more5",
-  },
-  {
-    "content" : "events/black_to_yoga.html",
-    "output" : "docs/black_to_yoga.html",
-    "EVENT_IMAGE" : "/static/images/events/black_to_yoga_flyer.jpg",
-    "EVENT_TITLE" : "Yoga Informational Workshop and Practice for Men",
-    "EVENT_DATES" : "November 10, 2019",
-    "EVENT_SPACE_NAME" : "Queen Hippie Gypsie",
-    "EVENT_SPACE_ADDRESS" : "337 14th St, Oakland, CA 94612",
-    "EVENT_ORGANIZER" : "Men of Substance",
-    "EVENT_ORGANIZER_URL": "https://www.facebook.com/MenOfSubstanceMag/",
-    "EVENT_EMAIL" : "menofsubstancemag@gmail.com",
-    "EVENT_MODAL_ID" : "black_to_yoga",
-  }, 
-]
-
-spaces = [
-  {
-    "content" : "spaces/kingston11.html",
-    "output" : "docs/kingston11.html",
-    "SPACE_LOGO" : "/static/images/spaces/k11_logo2.png",
-    "SPACE_NAME" : "Kingston 11 Cuisine",
-    "SPACE_IMAGE" : "/static/images/spaces/k11_event_space.jpg",
-    "SPACE_PAGE_LINK" : "./kingston11.html",
-  },
-  {
-    "content" : "spaces/queen_hippie_gypsy.html",
-    "output" : "docs/queen_hippie_gypsy.html",
-    "SPACE_LOGO" : "/static/images/spaces/qhg_storefront.jpg",
-    "SPACE_NAME" : "Queen Hippie Gypsy",
-    "SPACE_IMAGE" : "/static/images/spaces/qhg_kyrah_eventspace.jpg",
-    "SPACE_PAGE_LINK" : "./queen_hippie_gypsy.html",
-  },
-  {
-    "content" : "spaces/SAE_Expression_College.html",
-    "output" : "docs/SAE_Expression_College.html",
-    "SPACE_LOGO" : "/static/images/spaces/sae_logo.jpg",
-    "SPACE_NAME" : "SAE Expression College",
-    "SPACE_IMAGE" : "/static/images/spaces/sae_outdoor.jpg",
-    "SPACE_PAGE_LINK" : "./SAE_Expression_College.html",
+def build_page_dictionary(page_name):
+  single_file = find_specific_file("content", page_name)
+  print("single_file", single_file)
+  page_dict = {}
+  page_dict.update({"ACTIVE_INDEX" : ""})
+  page_dict.update({"ACTIVE_SPACES" : ""})
+  page_dict.update({"ACTIVE_EVENTS" : ""})
+  page_dict.update({"ACTIVE_ABOUT" : ""})
+  file_name = os.path.basename(single_file)
+  name_only, extension = os.path.splitext(file_name)
+  page_dict.update({"page_link" : file_name})
+  page_dict.update({"output": "docs/"+file_name})
+  page_dict.update({"PAGE_TITLE": name_only})
+  active_page_switch = {
+      "index" : "ACTIVE_INDEX",
+      "events" : "ACTIVE_EVENTS",
+      "about" : "ACTIVE_ABOUT",
+      "spaces": "ACTIVE_SPACES",
   }
-]
+  page_dict.update({active_page_switch.get(name_only): "active"})
+  
+  print("page_dict", page_dict)
+  
+  return page_dict
 
+#use glob to find all of the files in the given directory
+def find_all_files(directory):
+  all_files = glob.glob(directory+"/*.*")
+  return(all_files)
 
+def find_specific_file(directory, file_name):
+  theFile = glob.glob(directory+"/"+file_name+"*")[0]
+  return(theFile)
+  
+##current
+def update_item_list(list_of_dicts):
+  for item in list_of_dicts:
+    short_content=[]
+    detailed_content =[]
+    description_content_reader(item["content"], short_content, detailed_content)
+    if len(short_content) >= 1:
+      event.update({"short_content": short_content[0]})
+    if len(detailed_content) >= 1:
+      event.update({"detailed_content":detailed_content[0]}
+    )
+    
+def build_navigation_dictionary_list():
+  files = find_all_files("content")
+  pages = []
+  for file_path in files:
+    page = {}
+    file_name = os.path.basename(file_path)
+    name_only, extension = os.path.splitext(file_name)
+    page.update({"PAGE_TITLE": name_only})
+    page.update({"page_link" : file_name})
+    pages.append(page)
+  return pages
+
+# description_content_reader - pulls both the long and short versions of the content out of the content file
+# stores the short content as the first list entry in short_descripton variable (this is available to the calling function)
+# stores the detailed content as the 1st entry in the detailed description variable (this is available to the calling funciton)
+def description_content_reader(content, short_description, detailed_description):
+  description_type = None
+  current_description = None
+
+  description_text = open(content).read()
+  description_lines = description_text.splitlines()
+
+  for line in description_lines:
+    if line == "----SHORT DESCRIPTION----":
+      description_type="short"
+      short_description.append("")
+      current_description=""
+      continue
+    elif line == "----DETAILED DESCRIPTION----":
+      description_type="detailed"
+      detailed_description.append("")
+      current_description=""
+      continue
+
+    line = line.strip()  
+    if description_type == "short":
+      short_description[0] += " " + line
+    elif description_type == "detailed":
+      detailed_description[0] += " " + line
+    else:
+      print("something wroing in the description file", content)
+      chad= input("cancel now before it's too late!!")
+#vvvvvvvvvvvvvv -- old stuff: may be out of use--vvvvvvvvvvvvvvvvvvvvv
 
 # set template takes the file name of a template file, 
 # reads it and uses that to creates a object of Type Template
@@ -116,36 +137,7 @@ def apply_fullpage_template(page_template, page, content, pages, content_type_is
   )
   return full_page
 
-# description_content_reader - pulls both the long and short versions of the content out of the content file
-# stores the short content as the first list entry in short_descripton variable (this is available to the calling function)
-# stores the detailed content as the 1st entry in the detailed description variable (this is available to the calling funciton)
-def description_content_reader(content, short_description, detailed_description):
-  description_type = None
-  current_description = None
 
-  description_text = open(content).read()
-  description_lines = description_text.splitlines()
-
-  for line in description_lines:
-    if line == "----SHORT DESCRIPTION----":
-      description_type="short"
-      short_description.append("")
-      current_description=""
-      continue
-    elif line == "----DETAILED DESCRIPTION----":
-      description_type="detailed"
-      detailed_description.append("")
-      current_description=""
-      continue
-
-    line = line.strip()  
-    if description_type == "short":
-      short_description[0] += " " + line
-    elif description_type == "detailed":
-      detailed_description[0] += " " + line
-    else:
-      print("something wroing in the description file", content)
-      chad= input("cancel now before it's too late!!")
     
 
 
@@ -195,10 +187,13 @@ def write_file(html_page, output):
 
 
 
-#use glob to find all of the files in the given directory
-def find_all_files(directory):
-  all_files = glob.glob(directory+"/*.*")
-  return(all_files)
+
+
+
+
+
+    
+
 
 # Auto generate the pages list of dictionaries. 
 # pages list of dicts is taken in as function parameter all_content_dict

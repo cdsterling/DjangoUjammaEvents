@@ -9,7 +9,7 @@ urlpatterns = [
   path("index.html", views.serve_index),
   path("about.html", views.serve_about),
   path("events.html", views.serve_events),
-  path("dspaces.html", views.serve_spaces),
+  path("spaces.html", views.serve_spaces),
 ]
 
 # Boilerplate to include static files.

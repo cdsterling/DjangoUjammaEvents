@@ -1,68 +1,69 @@
 <!-- Generic Event-->
-
-<div class="row mb-2">
-  <div class="col-5">
-    <img src="{{ET.EVENT_IMAGE}}" class="img-fluid img-thumbnail" />
-  </div>
-  
-  <div class="col">
-    <div class="row">
-      <div class="col">
-        <h1 class="text-center" data-toggle="modal" data-target="#{{ET.EVENT_MODAL_ID}}">{{ET.EVENT_TITLE}}</h1>    
-      </div>
-    </div>  
-    <div class="row"> <!-- Date Row-->
-      <div class="col-2">
-        <p>Dates</p>
-      </div>
-      <div class="col">
-          <h4>{{ET.EVENT_DATES}}</h4>    
+{% for ET in event_list %}
+  <div class="row mb-2">
+    <div class="col-5">
+      <img src="{{ET.EVENT_IMAGE}}" class="img-fluid img-thumbnail" />
+    </div>
+    
+    <div class="col">
+      <div class="row">
+        <div class="col">
+          <h1 class="text-center" data-toggle="modal" data-target="#{{ET.EVENT_MODAL_ID}}">{{ET.EVENT_TITLE}}</h1>    
         </div>
-    </div>
-    <div class="row"> <!-- Location Row-->
-      <div class="col-2">
-        <p>Location:</p>
+      </div>  
+      <div class="row"> <!-- Date Row-->
+        <div class="col-2">
+          <p>Dates</p>
+        </div>
+        <div class="col">
+            <h4>{{ET.EVENT_DATES}}</h4>    
+          </div>
       </div>
-      <div class="col">
-        <h4>{{ET.EVENT_SPACE_NAME}}</h4>
-        <h5>{{ET.EVENT_SPACE_ADDRESS}}</h5> 
+      <div class="row"> <!-- Location Row-->
+        <div class="col-2">
+          <p>Location:</p>
+        </div>
+        <div class="col">
+          <h4>{{ET.EVENT_SPACE_NAME}}</h4>
+          <h5>{{ET.EVENT_SPACE_ADDRESS}}</h5> 
+        </div>
       </div>
-    </div>
-    <div class="row"> <!-- Presented By Row-->
-      <div class="col-2">
-        <p>Presented by:</p>
+      <div class="row"> <!-- Presented By Row-->
+        <div class="col-2">
+          <p>Presented by:</p>
+        </div>
+        <div class="col">
+          <h4>{{ET.EVENT_ORGANIZER}}</h4>
+          <p><a href="{{ET.EVENT_EMAIL}}" target="_blank">{{ET.EVENT_EMAIL}}</a></p>
+        </div>
       </div>
-      <div class="col">
-        <h4>{{ET.EVENT_ORGANIZER}}</h4>
-        <p><a href="{{ET.EVENT_EMAIL}}" target="_blank">{{ET.EVENT_EMAIL}}</a></p>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-2">
-        <p>Details</p>
-      </div>
-      <div class="col">
-        <p>{{EVENT_DETAILS}}</p>
+      <div class="row">
+        <div class="col-2">
+          <p>Details</p>
+        </div>
+        <div class="col">
+          <p>{{EVENT_DETAILS}}</p>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="modal fade" id="{{ET.EVENT_MODAL_ID}}" tabindex="-1" role="dialog" aria-labelledby="{{ET.EVENT_MODAL_ID}}Title" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-scrollable" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="{{ET.EVENT_MODAL_ID}}Title">{{ET.EVENT_TITLE}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        {{EVENT_EXTENDED_DETAILS}}
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+  <div class="modal fade" id="{{ET.EVENT_MODAL_ID}}" tabindex="-1" role="dialog" aria-labelledby="{{ET.EVENT_MODAL_ID}}Title" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="{{ET.EVENT_MODAL_ID}}Title">{{ET.EVENT_TITLE}}</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          {{EVENT_EXTENDED_DETAILS}}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+{% endfor %}

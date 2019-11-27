@@ -17,10 +17,10 @@ def serve_index(request):
   context = {
     "page":page_dictionary,
     "pages": page_navigation,
-    "PAGE_CONTENT": content,
+    "the_page_content": content,
     "spaces_nav": db.spaces,
   }
-  return render(request, "whole_page_template.html", context)
+  return render(request, "generic_page_template.html", context)
 
 def serve_about(request):
   content = open("./content/about.html").read()
@@ -29,10 +29,10 @@ def serve_about(request):
   context = {
     "page": page_dictionary,
     "pages": page_navigation,
-    "PAGE_CONTENT": content,
+    "the_page_content": content,
     "spaces_nav": db.spaces,
   }
-  return render(request, "whole_page_template.html", context)
+  return render(request, "generic_page_template.html", context)
 
 def serve_events(request):
   page_dictionary = utils.build_page_dictionary("events.html")
@@ -48,7 +48,7 @@ def serve_events(request):
     "spaces_nav": db.spaces,
   }
 
-  return render(request, "whole_page_template.html", context)
+  return render(request, "event_template.html", context)
 
 def serve_spaces(request):
   
@@ -64,7 +64,7 @@ def serve_spaces(request):
     "space_list" : space_list,
     "spaces_nav": db.spaces,
   }
-  return render(request, "whole_page_template.html", context)
+  return render(request, "space_template.html", context)
 
 def serve_generic_detailed_space(request):
   page_navigation = utils.build_navigation_dictionary_list()
@@ -88,6 +88,6 @@ def serve_generic_detailed_space(request):
     "pages": page_navigation,
     "space_list" : space_list,
     "spaces_nav": db.spaces,
-    "PAGE_CONTENT": content,
+    "the_page_content": content,
   }
-  return render(request, "whole_page_template.html", context)
+  return render(request, "generic_page_template.html", context)

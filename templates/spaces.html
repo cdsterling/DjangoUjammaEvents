@@ -1,4 +1,7 @@
-      <!-- Call to Action Well -->
+{% extends "whole_page_template.html" %}
+
+{% block PAGE_CONTENT %}
+  <!-- Call to Action Well -->
       <div class="card text-white bg-secondary my-5 py-4 text-center bkimg">
         <div class="card-body">
           <h1 class="text-white m-0">Find a space near you to host your event</h1>
@@ -6,6 +9,8 @@
       </div>
       
       <div class="row">
-          {% include "space_template.html" %}
+        {% block all_spaces %}
+        {% endblock all_spaces %}
   
         </div>
+{% endblock %}

@@ -91,3 +91,20 @@ def serve_generic_detailed_space(request):
     "the_page_content": content,
   }
   return render(request, "generic_page_template.html", context)
+
+
+def serve_contact(request):
+  print("Contact page")
+  response =requests.get('https://api.github.com/users/cdsterling/repos')
+  git_repos = response.json()
+  print(git_repos)
+  page_dictionary = utils.build_page_dictionary("contact.html")
+  page_navigation = utils.build_navigation_dictionary_list()
+  
+  context = {
+    "page": page_dictionary,
+    "pages": page_navigation,
+    "spaces_nav": db.spaces,
+    "git_repos":git_repos,
+  }
+  return render(request, "contact.html", context)

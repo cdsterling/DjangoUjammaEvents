@@ -1,0 +1,34 @@
+{% extends "whole_page_template.html" %}
+
+{% block PAGE_CONTENT %}
+<div class="row mb-5">
+  <div class="col">
+    <p> Before you decide to contact us, take a look at my Git Repos, located on Github!</p>
+    <p>
+      <table style="width:100%">
+        <thead>
+          <tr>
+            <th>Owner Name</th><th>Repo Name</th><th>Repo Description</th>
+          </tr>
+        </thead>
+        <tbody>
+        {% for repo in git_repos %}
+          <tr>
+            <td>{{ repo.owner.login }}</td>
+            <td>
+              <a href="{{repo.html_url}}" target="_blank">
+              {{ repo.name}}
+              </a>
+            </td>
+            <td>{{ repo.description }}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+      </table>
+    </p>
+    <p> ToDO: impliment contact us mailform</p>
+
+
+  </div>
+</div>
+{% endblock %}

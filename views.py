@@ -1,6 +1,7 @@
 import requests
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.shortcuts import redirect
 import utils
 #get all the event and spaces details
 import db
@@ -108,3 +109,23 @@ def serve_contact(request):
     "git_repos":git_repos,
   }
   return render(request, "contact.html", context)
+
+
+def send_email(request):
+  
+  if request.POST["name"] and request.POST["email"] and request.POST["message"]:
+    name = request.POST["name"]
+    email = request.POST["email"]
+    message = request.POST["message"]
+  
+
+    requests.post(
+      "https://api.mailgun.net/v3/sandboxfae1ac1364e846a5a9ad50abf118e90c.mailgun.org/messages",
+      auth=("api", "63bcacf271ce3ed0c995a4943be51ba2-e470a504-4ba0d732"),
+      data={"from": name+" <"+email+">",
+        "to": ["cdsterling@gmail.com"],
+        "subject": "Contact message",
+        "text": message,
+      }
+    )
+  return redirect("index.html")

@@ -11,6 +11,7 @@ urlpatterns = [
   path("events.html", views.serve_events),
   path("spaces.html", views.serve_spaces),
   path("contact.html", views.serve_contact),
+  path("send-email", views.send_email),
   re_path(r'spaces/*', views.serve_generic_detailed_space),   #pretty sure there's a better way to do this, but i couldn't find anything to help me understand how to do the regular expressions for django
 ]
 
